@@ -24,7 +24,7 @@ function Card({pokemon, icon1, icon2}) {
                   
                 </Box>
                 <Box mt="20px">
-                  <Image src = {`${pokemon.sprites.other.home.front_default}`} boxSize='120px'></Image>
+                  <Image src = {`${pokemon.sprites.other['official-artwork'].front_default}`} boxSize='120px'></Image>
                 </Box>
               </Flex>
             </Stack>

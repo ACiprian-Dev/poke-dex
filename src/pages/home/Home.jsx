@@ -20,38 +20,11 @@ import axios from 'axios'
 
 function Home() {
 
-  // const [pokemons, setPokemons] = useState([{
-  //   name: "bulbasaur",
-  //   id: "001",
-  //   type1: "grass",
-  //   type2: "poison",
-  //   image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
-  // } , {
-  //   name: "ivysaur",
-  //   id: "002",
-  //   type1: "grass",
-  //   type2: "poison",
-  //   image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png"
-  // }]);
-  
-  // const auxPokemons = [{
-  //   name: "bulbasaur",
-  //   id: "001",
-  //   type1: "grass",
-  //   type2: "poison",
-  //   image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
-  // } , {
-  //   name: "ivysaur",
-  //   id: "002",
-  //   type1: "grass",
-  //   type2: "poison",
-  //   image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png"
-  // }];
-
   const [pokemons, setPokemons] = useState([]);
   const [auxPokemons, setAuxPokemons] = useState([]);
   const [url, setUrl] = useState('https://pokeapi.co/api/v2/pokemon?limit=20');
   const [sortType, setSortType] = useState("idUp");
+  const [filters, setFilters] = useState([]);
 
   const {data} = useFetch('https://pokeapi.co/api/v2/pokemon?limit=20');
 
@@ -128,8 +101,30 @@ function Home() {
         })
     }
 
-    
   } 
+
+  useEffect(() => {
+    if(filters)
+      setAuxPokemons(filtersPokemons(pokemons, filters));
+    else
+      setAuxPokemons(pokemons)
+  }, [filters])
+
+  const filtersPokemons = (pokes, filts) => {
+    return pokes.filter((pokemon) => {
+      const pokemonType1 = pokemon.types[0].type.name.toLowerCase();
+      const pokemonType2 = pokemon.types[1] ? pokemon.types[1].type.name.toLowerCase() : null;
+
+      let filt = filts[0] ? filts[0].toLowerCase() : null
+
+      console.log(auxPokemons)
+
+      if(pokemonType2 !=null)
+        return pokemonType1.includes(filt) || pokemonType2.includes(filt);
+      else 
+        return pokemonType1.includes(filt)
+    })
+  }
 
   // const handleOnChange = (newFilter) => {
   //   setFilter(newFilter);
@@ -139,8 +134,8 @@ function Home() {
 
   return (
     <>
-      <Search setValue = {setSearchFilter} searchFilter = {searchFilter} sortType = {sortType} setSortType = {setSortType}></Search>
-      {console.log(sortType)}
+      <Search setFilters={setFilters} filters = {filters} setValue = {setSearchFilter} searchFilter = {searchFilter} sortType = {sortType} setSortType = {setSortType}></Search>
+      {console.log(filters)}
       <SimpleGrid columns={3} mt={5}>
         {
         auxPokemons.map(pokemon => (
