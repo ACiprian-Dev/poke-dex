@@ -1,0 +1,73 @@
+@import url('./colors.css');
+
+.grass {
+  background: var(--grass-green);
+}
+
+.fire {
+  background: var(--fire-red);
+}
+
+.water {
+  background: var(--water-blue);
+}
+
+.electric {
+  background: var(--electric-yellow);
+}
+
+.normal {
+  background: var(--normal-gray);
+}
+
+.ghost {
+  background: var(--ghost-purple);
+}
+
+.ice {
+  background: var(--ice-blue);
+}
+
+.fighting {
+  background: var(--fighting-red);
+}
+
+.poison {
+  background: var(--poison-purple);
+}
+
+.ground {
+  background: var(--ground-brown);
+}
+
+.flying {
+  background: var(--flying-purple);
+}
+
+.psychic {
+  background: var(--psychic-pink);
+}
+
+.bug {
+  background: var(--bug-green);
+}
+
+.rock {
+  background: var(--rock-brown);
+}
+
+.dragon {
+  background: var(--dragon-purple);
+}
+
+.dark {
+  background: var(--dark-brown);
+}
+
+.steel {
+  background: var(--steel-gray);
+}
+
+.fairy {
+  background: var(--fairy-pink);
+}

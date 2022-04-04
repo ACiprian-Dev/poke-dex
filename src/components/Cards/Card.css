@@ -1,0 +1,17 @@
+@import url(../../shared/colors.css);
+
+.card {
+  border: .1px solid var(--marine);
+  border-radius: 15px;
+  box-shadow: 0 0 15px var(--shadow-gray);
+}
+
+.icon {
+  width: 12px;
+  margin-right: 5px;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+}

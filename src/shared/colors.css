@@ -1,0 +1,45 @@
+:root {
+    --white: #fff;
+    --black: #000;
+    --grass-green: rgba(120, 200, 79, 0.4);
+    --fire-red: rgba(240, 128, 48, 0.4);
+    --water-blue: rgba(104, 144, 240, 0.4);
+    --electric-yellow: rgba(249, 208, 48, 0.4);
+    --normal-gray: rgba(167, 168, 119, 0.4);
+    --ghost-purple: rgba(112, 89, 152, 0.4);
+    --ice-blue: rgba(150, 217, 214, 0.4);
+    --fighting-red: rgba(194, 46, 40, 0.4);
+    --poison-purple: rgba(163, 62, 161, 0.4);
+    --ground-brown: rgba(226, 191, 101, 0.4);
+    --flying-purple: rgba(169, 143, 243, 0.4);
+    --psychic-pink: rgba(249, 85, 135, 0.4);
+    --bug-green: rgba(166, 185, 26, 0.4);
+    --rock-brown: rgba(182, 161, 54, 0.4);
+    --dragon-purple: rgba(111, 53, 252, 0.4);
+    --dark-brown: rgba(112, 87, 70, 0.4);
+    --steel-gray: rgba(183, 183, 206, 0.4);
+    --fairy-pink: rgba(214, 133, 173, 0.4);
+
+
+    --hover-grass-green: rgba(120, 200, 79, 0.6);
+    --hover-fire-red: rgba(240, 128, 48, 0.6);
+    --hover-water-blue: rgba(104, 144, 240, 0.6);
+    --hover-electric-yellow: rgba(249, 208, 48, 0.6);
+    --hover-normal-gray: rgba(167, 168, 119, 0.6);
+    --hover-ghost-purple: rgba(112, 89, 152, 0.6);
+    --hover-ice-blue: rgba(150, 217, 214, 0.6);
+    --hover-fighting-red: rgba(194, 46, 40, 0.6);
+    --hover-poison-purple: rgba(163, 62, 161, 0.6);
+    --hover-ground-brown: rgba(226, 191, 101, 0.6);
+    --hover-flying-purple: rgba(169, 143, 243, 0.6);
+    --hover-psychic-pink: rgba(249, 85, 135, 0.6);
+    --hover-bug-green: rgba(166, 185, 26, 0.6);
+    --hover-rock-brown: rgba(182, 161, 54, 0.6);
+    --hover-dragon-purple: rgba(111, 53, 252, 0.6);
+    --hover-dark-brown: rgba(112, 87, 70, 0.6);
+    --hover-steel-gray: rgba(183, 183, 206, 0.6);
+    --hover-fairy-pink: rgba(214, 133, 173, 0.6);
+
+    --marine: #042440;
+    --shadow-gray: #BFBFBF;
+}

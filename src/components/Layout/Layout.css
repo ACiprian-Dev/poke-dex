@@ -1,0 +1,25 @@
+.app-container {    
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    width: 100vw;
+    min-height: 100vh;
+    padding-bottom: 60px;
+
+    background-color: #F2F2F2;
+}
+  
+.main-content {
+    width: 1080px;
+}
+
+.main-content > a {
+    text-decoration: none;
+}
+
+.pokedex-title {
+    padding: 20px 0;
+    
+    color: var(--marine);
+}
