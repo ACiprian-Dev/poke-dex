@@ -1,6 +1,6 @@
 import { CheckIcon, SearchIcon } from '@chakra-ui/icons'
-import { Box, Button, Flex, Input, InputGroup, InputRightElement, Menu, MenuButton, MenuItem, MenuItemOption, MenuList, MenuOptionGroup, Select, Stack, Text, useCheckbox, useCheckboxGroup } from '@chakra-ui/react'
-import React, { useEffect } from 'react'
+import { Box, Button, Flex, HStack, Input, InputGroup, InputRightElement, Menu, MenuButton, MenuGroup, MenuItem, MenuItemOption, MenuList, MenuOptionGroup, Select, Stack, Tag, TagCloseButton, TagLabel, Text, useCheckbox, useCheckboxGroup } from '@chakra-ui/react'
+import React, { useEffect, useState } from 'react'
 import { chakra } from "@chakra-ui/react"
 
 function CustomCheckbox(props) {
@@ -44,7 +44,15 @@ function Search({ setValue, searchFilter, sortType, setSortType, filters, setFil
 
   useEffect(() => {
     setFilters(value);
-  }, [value])
+    if(value.length==2)
+      setHasReachedMax(true);
+    else
+      setHasReachedMax(false);
+  }, [value, filters])
+
+  const [hasReachedMax, setHasReachedMax] = useState(false);
+
+  const iconsString = ["Bug", "Electric", "Fairy", "Fire", "Flying", "Grass", "Ground", "Normal", "Poison", "Water"]
 
   return (
     <div>
@@ -65,15 +73,30 @@ function Search({ setValue, searchFilter, sortType, setSortType, filters, setFil
         
         <Menu closeOnSelect={false}>
           <MenuButton ml={4} bg="white" as={Button}>Filters</MenuButton>
-          <MenuList>
-            <Stack>
+          <MenuList ml="-40%" w="fit-content">
+            <MenuGroup title = "Types">
+            <HStack>
 
-              <CustomCheckbox  {...getCheckboxProps({ value: 'Grass' })} />
-              <CustomCheckbox  {...getCheckboxProps({ value: 'Poison' })} />
-              <CustomCheckbox  {...getCheckboxProps({ value: 'Normal' })} />
-            </Stack>
+              {iconsString.map((type) => (
+                <MenuItem isDisabled={hasReachedMax ? value.includes(type) ? false : true : false} key={type} pl="0px" pr="0px" w="fit-content">
+                <CustomCheckbox  {...getCheckboxProps({ value: type })} />
+                </MenuItem>
+              ))}
+            </HStack>
+            </MenuGroup>
           </MenuList>
         </Menu>
+
+        <HStack>
+          {filters.map((filter) => (
+            <Tag ml = {4} size="lg" key={filter} borderRadius="10px" variant="solid" bg="white" color="black">
+              <TagLabel>
+                {filter}
+              </TagLabel>
+              <TagCloseButton onClick={() => setFilters(value.splice(value.indexOf(filter), value.indexOf(filter)+1))}></TagCloseButton>
+            </Tag>
+          ))}
+        </HStack>
       </Flex>
     </div>
   )
