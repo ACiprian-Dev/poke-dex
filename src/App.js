@@ -9,20 +9,17 @@ import './App.css'
 function App() {
   return (
     <div className="app-container">
-      <Layout>
       <BrowserRouter>
+      <Layout>
         <Routes>
           <Route path="/">
             <Route index element={<Home></Home>}></Route>
-            <Route path="/pokemon" element={<Pokemon></Pokemon>} >
-              <Route path="/pokemon/:id" element={<Pokemon></Pokemon>}></Route>
-              <Route path="*" element={<NotFound/>}></Route>
-            </Route>
+              <Route path="/:id" element={<Pokemon></Pokemon>}></Route>
             <Route path ="*" element={<NotFound/>} ></Route>
           </Route>
         </Routes>
-      </BrowserRouter>
       </Layout>
+      </BrowserRouter>
     </div>
   );
 }
