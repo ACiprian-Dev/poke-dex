@@ -48,7 +48,6 @@ function Pokemon() {
   const getAllEvolutions = (chain) => {
     if (chain) {
       let aux = [[]];
-      let i = 0;
       chain.evolves_to.forEach(evolution => {
         let obj = {
           id: chain.species.url.split('/')[6],

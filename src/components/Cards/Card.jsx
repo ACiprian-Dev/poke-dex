@@ -1,4 +1,4 @@
-import { SimpleGrid, Box, Stack, Heading, Flex, Spacer, Center, Image, Popover, PopoverTrigger, PopoverContent, PopoverArrow, PopoverCloseButton, PopoverBody, Tooltip, PopoverHeader, Text, PopoverFooter, Button } from '@chakra-ui/react'
+import { Box, Stack, Heading, Flex, Spacer,  Image} from '@chakra-ui/react'
 import React from 'react'
 import { Link } from 'react-router-dom';
 import TypeTag from '../Tags/TypeTag';
