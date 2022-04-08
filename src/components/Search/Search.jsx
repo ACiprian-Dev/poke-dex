@@ -86,6 +86,8 @@ function Search({ setValue, searchFilter, sortType, setSortType, filters, setFil
             </MenuGroup>
           </MenuList>
         </Menu>
+        
+        
 
         <HStack>
           {filters.map((filter) => (
@@ -98,6 +100,7 @@ function Search({ setValue, searchFilter, sortType, setSortType, filters, setFil
           ))}
         </HStack>
       </Flex>
+      
     </div>
   )
 }

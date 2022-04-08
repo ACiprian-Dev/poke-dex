@@ -1,7 +1,15 @@
 import { Button, Center, Popover, PopoverArrow, PopoverBody, PopoverCloseButton, PopoverContent, PopoverFooter, PopoverHeader, PopoverTrigger, Text } from '@chakra-ui/react'
-import React from 'react'
+import React, { useState } from 'react'
+import { Link, Navigate } from 'react-router-dom'
 
-function TypeTag({type, typeDescription, icon, ml, mr}) {
+function TypeTag({ type, typeDescription, icon, ml, mr }) {
+
+  const [redirect, setRedirect] = useState(false);
+
+  const handleOnClick = () => {
+    setRedirect(true)
+  }
+
   return (
     <Popover fontSize="sm" placement="top" isLazy trigger='hover'>
       <PopoverTrigger>
@@ -13,7 +21,8 @@ function TypeTag({type, typeDescription, icon, ml, mr}) {
         <PopoverHeader>Description</PopoverHeader>
         <PopoverBody><Text fontSize="12px" noOfLines={3} >{typeDescription}</Text></PopoverBody>
         <PopoverFooter>
-          <Button size="sm">Learn More</Button>
+            <Button onClick={handleOnClick} size="sm">Learn More</Button>
+            {redirect ? (<Navigate to ={`/type/${type.toLowerCase()}`}></Navigate>) : null}
         </PopoverFooter>
       </PopoverContent>
     </Popover>

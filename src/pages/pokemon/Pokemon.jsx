@@ -25,6 +25,7 @@ import ghost from '../../images/ghost.svg'
 import dragon from '../../images/dragon.svg'
 import dark from '../../images/dark.svg'
 import Card from '../../components/Cards/Card';
+import { ArrowRightIcon } from '@chakra-ui/icons';
 
 function Pokemon() {
 
@@ -34,10 +35,6 @@ function Pokemon() {
   const species = useFetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`).data;
   const [evolutions, setEvolutions] = useState([]);
   const [pokemons, setPokemons] = useState([]);
-  const [dataEvos, setDataEvos] = useState();
-
-  console.log(data);
-  console.log(species)
 
   const icons = [bug, electric, fairy, fire, flying, grass, ground, normal, poison, water, steel, psychic, fighting, rock, ice, ghost, dragon, dark];
   const iconsString = ["bug", "electric", "fairy", "fire", "flying", "grass", "ground", "normal", "poison", "water", "steel", "psychic", "fighting", "rock", "ice", "ghost", "dragon", "dark"]
@@ -53,7 +50,6 @@ function Pokemon() {
       let aux = [[]];
       let i = 0;
       chain.evolves_to.forEach(evolution => {
-        console.log("secondChain ", chain)
         let obj = {
           id: chain.species.url.split('/')[6],
           trigger: chain.evolution_details[0] ? chain.evolution_details[0].trigger.name : null,
@@ -72,14 +68,13 @@ function Pokemon() {
           species: chain.evolves_to[0].evolves_to[0].species.name
         } : null
 
-         aux.unshift( [...obj ? [obj] : [],
-          ...obj2 ? [obj2] : [],
-          ...obj3 ? [obj3] : []
+        aux.unshift([...obj ? [obj] : [],
+        ...obj2 ? [obj2] : [],
+        ...obj3 ? [obj3] : []
         ])
         // chain = chain.evolves_to;
       });
       aux.pop();
-      console.log("allEvos ",aux);
       return aux;
     }
     return null
@@ -93,69 +88,28 @@ function Pokemon() {
 
   useEffect(async () => {
 
-    if (species.evolution_chain.url) {
+    if (species) {
 
       const evoChain = await getEvoChain(species);
       const evos = getAllEvolutions(evoChain.data.chain);
 
-
       setEvolutions(evos);
-      console.log("evos", evos);
       let cevaux = [];
 
-      evos.forEach( element => {
-        element.forEach(el => {
-          console.log("hhhhhh", el)
-        })
-      });
-
-      for( const element of evos) {
+      for (const element of evos) {
         let aux = [];
-        for(const el of element) {
+        for (const el of element) {
           const response = await getPokes(`https://pokeapi.co/api/v2/pokemon/${el.id}`);
           aux.push(response.data)
         }
-        
-        console.log("element ffs", aux)
+
         cevaux.unshift(aux);
       }
       console.table(cevaux);
       setPokemons(cevaux)
-      //const response = await getPokes(`https://pokeapi.co/api/v2/pokemon?limit=${evos.length}&offset=${evos[0].id - 1}`);
-      //const ceva = response.data;
-      //setDataEvos(ceva);
     }
 
-    // if (prev != null)
-    //   prev.forEach(element => {
-    //     aux.unshift(element);
-    //   });
-    // if (next != null)
-    //   next.forEach(element => {
-    //     aux.push(element);
-    //   })
-
   }, [species])
-
-  // useEffect(async () => {
-  //   let aux = [];
-  //   if (dataEvos) {
-  //     // for(const dataEvo of dataEvos) {
-  //     //   const promises = dataEvo.results.map((result) => axios.get(result.url));
-  //     //   const resolved = await Promise.all(promises);
-  //     //   let aux2 = [];
-  //     //   aux2 = [...aux2, ...resolved.map((answer) => answer.data)];
-  //     //   aux.unshift(aux2);
-  //     // }
-  //     // console.log("pokemonsToBeSet", aux)
-  //     // // const promises = dataEvos.results.map((result) => axios.get(result.url));
-  //     // // const resolved = await Promise.all(promises);
-  //     // // let aux = [];
-  //     // // aux = [...aux, ...resolved.map((answer) => answer.data)]
-  //     // // console.log("pokemonsToBeSet", aux)
-  //     // setPokemons(aux);
-  //   }
-  // }, [dataEvos]);
 
   if (Number.isNaN(+id) || Number(id) < 1 || Number(id) > 898) {
     return <NotFound />;
@@ -185,7 +139,6 @@ function Pokemon() {
       }
 
     }
-    console.log(pokemons)
 
     return descs[getRandomInt(0, j)];
   }
@@ -234,7 +187,6 @@ function Pokemon() {
           <Flex mr="200px" direction="column" w="500px">
             <Box >
               <Heading mt="20px" mb="20px">Description</Heading>
-              {console.log(Math.random(0, 94))}
               <Text mt="16px" mb="16px">{getDescription()}</Text>
             </Box>
             <Box>
@@ -281,18 +233,25 @@ function Pokemon() {
           <Heading>Evolutions</Heading>
           {
             pokemons.map(pokemon => (
-              <Flex key ={Math.random()} mt="40px"  w="fit-content" className={`card ${data.types[0].type.name}`}>
-            {
-              pokemon.map(poke => (
+              <Flex key={getRandomInt(1, 20000)} mr="auto" ml="auto" alignItems="center"  mt="40px" w="fit-content" className={`card ${data.types[0].type.name}`}> 
+                {
 
-                <Card key={poke.id} pokemon={poke} icon1={icons[iconsString.indexOf(poke.types[0].type.name)]} icon2={poke.types[1] ? icons[iconsString.indexOf(poke.types[1].type.name)] : null} ></Card>
+                  pokemon.map(poke => (<>
+                    {evolutions[0][pokemon.indexOf(poke)].trigger ? (
+                      <Stack color="white" display="flex" alignItems="center">
+                        <Text>{evolutions[0] ? capitalizeFirstLetter(evolutions[0][pokemon.indexOf(poke)].trigger) : null}</Text>
+                        <ArrowRightIcon></ArrowRightIcon>
+                      </Stack>) : null}
 
-              ))
-            }
-          </Flex>
+                    <Card key={poke.id} pokemon={poke} icon1={icons[iconsString.indexOf(poke.types[0].type.name)]} icon2={poke.types[1] ? icons[iconsString.indexOf(poke.types[1].type.name)] : null} ></Card>
+                  </>
+
+                  ))
+                }
+              </Flex>
             ))
           }
-          
+
         </Box>
 
       </>) : <Text>Loading...</Text>

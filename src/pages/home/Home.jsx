@@ -1,4 +1,4 @@
-import { SimpleGrid, Box, Stack, Heading, Flex, Spacer, Center, Image } from '@chakra-ui/react'
+import { SimpleGrid, Box, Stack, Heading, Flex, Spacer, Center, Image, Button } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import Search from '../../components/Search/Search'
 import '../../shared/pokemonTypes.css'
@@ -32,24 +32,27 @@ function Home() {
 
   const [pokemons, setPokemons] = useState([]);
   const [auxPokemons, setAuxPokemons] = useState([]);
-  const [url, setUrl] = useState('https://pokeapi.co/api/v2/pokemon?limit=20');
+  const [url, setUrl] = useState('https://pokeapi.co/api/v2/pokemon');
   const [sortType, setSortType] = useState("idUp");
   const [filters, setFilters] = useState([]);
 
-  const { data } = useFetch('https://pokeapi.co/api/v2/pokemon');
+  const { data } = useFetch(url);
 
   useEffect(async () => {
     if (data) {
       const promises = data.results.map((result) => axios.get(result.url));
       const resolved = await Promise.all(promises);
-      setPokemons([...pokemons, ...resolved.map((answer) => answer.data)])
-      setAuxPokemons([...auxPokemons, ...resolved.map((answer) => answer.data)])
+      let aux = [];
+      console.log(data)
+      aux = [...aux, ...resolved.map((answer) => aux.includes(answer.data) ? null : answer.data)]
+      setPokemons([...pokemons, ...aux])
+      setAuxPokemons([...auxPokemons, ...aux])
     }
   }, [data]);
 
 
-const icons = [bug, electric, fairy, fire, flying, grass, ground, normal, poison, water, steel, psychic, fighting, rock, ice, ghost, dragon, dark];
-const iconsString = ["bug", "electric", "fairy", "fire", "flying", "grass", "ground", "normal", "poison", "water", "steel", "psychic", "fighting", "rock", "ice", "ghost", "dragon", "dark"]
+  const icons = [bug, electric, fairy, fire, flying, grass, ground, normal, poison, water, steel, psychic, fighting, rock, ice, ghost, dragon, dark];
+  const iconsString = ["bug", "electric", "fairy", "fire", "flying", "grass", "ground", "normal", "poison", "water", "steel", "psychic", "fighting", "rock", "ice", "ghost", "dragon", "dark"]
 
   const [searchFilter, setSearchFilter] = useState('');
 
@@ -151,17 +154,23 @@ const iconsString = ["bug", "electric", "fairy", "fire", "flying", "grass", "gro
     return pokemons;
   }
 
+  const handleLoadMore = () => {
+    setUrl(data.next)
+  }
+
   return (
     <>
-      <Search setFilters={setFilters} filters={filters} setValue={setSearchFilter} searchFilter={searchFilter} sortType={sortType} setSortType={setSortType}></Search>
+      <Search setFilters={setFilters} filters={filters} setValue={setSearchFilter} searchFilter={searchFilter} sortType={sortType} setSortType={setSortType} ></Search>
       <Flex wrap="wrap" mt={5}>
         {
           auxPokemons.map(pokemon => (
-           
-              <Card key={pokemon.id} pokemon={pokemon} icon1={icons[iconsString.indexOf(pokemon.types[0].type.name)]} icon2={pokemon.types[1] ? icons[iconsString.indexOf(pokemon.types[1].type.name)] : null} ></Card>
+
+            <Card key={pokemon.id} styleClass={pokemon.types[0].type.name} pokemon={pokemon} icon1={icons[iconsString.indexOf(pokemon.types[0].type.name)]} icon2={pokemon.types[1] ? icons[iconsString.indexOf(pokemon.types[1].type.name)] : null} ></Card>
 
           ))}
       </Flex>
+
+      <Button ml="16px" variant="solid" colorScheme="blackAlpha" onClick={handleLoadMore}>Load More Pokemons</Button>
     </>
   )
 }

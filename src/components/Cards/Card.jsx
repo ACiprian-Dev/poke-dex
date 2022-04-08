@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 import TypeTag from '../Tags/TypeTag';
 import {capitalizeFirstLetter, typeDescriptions} from '../../shared/helpers'
 
-function Card({ pokemon, icon1, icon2 }) {
+function Card({ pokemon, icon1, icon2, styleClass }) {
 
   return (
     <div>
       <Link key={pokemon.id * 5000} to={`/${pokemon.id}`}>
-        <Box p="20px" h="225px" w="300px" m={4} className={`card ${pokemon.types[0].type.name}`} >
+        <Box p="20px" h="225px" w="300px" m={4} className={`card ${styleClass}`} >
           <Stack>
             <Flex color="white">
               <Heading size={4}>{capitalizeFirstLetter(pokemon.name)}</Heading>
