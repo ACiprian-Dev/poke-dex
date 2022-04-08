@@ -47,6 +47,7 @@ function Home() {
       aux = [...aux, ...resolved.map((answer) => aux.includes(answer.data) ? null : answer.data)]
       setPokemons([...pokemons, ...aux])
       setAuxPokemons([...auxPokemons, ...aux])
+      
     }
   }, [data]);
 
@@ -58,7 +59,7 @@ function Home() {
 
   useEffect(() => {
     setAuxPokemons(getPokemons(filters, searchFilter, sortType));
-  }, [searchFilter, sortType, filters]);
+  }, [searchFilter, sortType, filters, pokemons]);
 
   const getPokemons = (filters, searchFilter, sortType) => {
     let aux = [];
