@@ -8,7 +8,7 @@ function Card({ pokemon, icon1, icon2 }) {
 
   return (
     <div>
-      <Link key={pokemon.id * 5000} to={`${pokemon.id}`}>
+      <Link key={pokemon.id * 5000} to={`/${pokemon.id}`}>
         <Box p="20px" h="225px" w="300px" m={4} className={`card ${pokemon.types[0].type.name}`} >
           <Stack>
             <Flex color="white">
@@ -18,9 +18,9 @@ function Card({ pokemon, icon1, icon2 }) {
             </Flex>
             <Flex justifyContent="space-between" align="center">
               <Box mt="20px" direction="column" justifyContent="center">
-                <TypeTag type={capitalizeFirstLetter(pokemon.types[0].type.name)} description={typeDescriptions[pokemon.types[0].type.name]} icon={icon1}></TypeTag>
+                <TypeTag type={capitalizeFirstLetter(pokemon.types[0].type.name)} typeDescription={typeDescriptions[pokemon.types[0].type.name]} icon={icon1}></TypeTag>
 
-                {pokemon.types[1] ? <TypeTag type={capitalizeFirstLetter(pokemon.types[0].type.name)} description={typeDescriptions[pokemon.types[0].type.name]} icon={icon2}></TypeTag> : null}
+                {pokemon.types[1] ? <TypeTag type={capitalizeFirstLetter(pokemon.types[1].type.name)} typeDescription={typeDescriptions[pokemon.types[1].type.name]} icon={icon2}></TypeTag> : null}
 
               </Box>
               <Box mt="20px">

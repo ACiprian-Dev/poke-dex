@@ -6,7 +6,7 @@ import '../../shared/colors.css';
 function Layout({children}) {
   return (
     <>
-    <Box ml={8}>
+    <Box width="100%" fontFamily="Space Mono" ml={8}>
       <Link to="/"><Heading size='xl' mt={8} mb={8}>Pokedex</Heading></Link>
       <Box>{children}</Box>
     </Box>
