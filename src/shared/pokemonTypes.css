@@ -71,3 +71,79 @@
 .fairy {
   background: var(--fairy-pink);
 }
+
+.grass:hover {
+  background-color: var(--hover-grass-green);
+}
+
+.fire:hover {
+  background-color: var(--hover-fire-red);
+}
+
+.water:hover {
+  background-color: var(--hover-water-blue);
+}
+
+.electric:hover {
+  background-color: var(--hover-electric-yellow);
+}
+
+.normal:hover {
+  background-color: var(--hover-normal-gray);
+}
+
+.ghost:hover {
+  background-color: var(--hover-ghost-purple);
+}
+
+.ice:hover {
+  background-color: var(--hover-ice-blue);
+}
+
+.fighting:hover {
+  background-color: var(--hover-fighting-red);
+}
+
+.poison:hover {
+  background-color: var(--hover-poison-purple);
+}
+
+.ground:hover {
+  background-color: var(--hover-ground-brown);
+}
+
+.flying:hover {
+  background-color: var(--hover-flying-purple);
+}
+
+.psychic:hover {
+  background-color: var(--hover-psychic-pink);
+}
+
+.bug:hover {
+  background-color: var(--hover-bug-green);
+}
+
+.rock-hover:hover {
+  background-color: var(--hover-rock-brown);
+}
+
+.dragon-hover:hover {
+  background-color: var(--hover-dragon-purple);
+}
+
+.dark-hover:hover {
+  background-color: var(--hover-dark-brown);
+}
+
+.steel-hover:hover {
+  background-color: var(--hover-steel-gray);
+}
+
+.fairy-hover:hover {
+  background-color: var(--hover-fairy-pink);
+}
+
+.default {
+  background-color: var(--shadow-gray)
+}

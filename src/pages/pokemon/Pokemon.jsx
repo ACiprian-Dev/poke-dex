@@ -232,7 +232,7 @@ function Pokemon() {
           <Heading>Evolutions</Heading>
           {
             pokemons.map(pokemon => (
-              <Flex key={getRandomInt(1, 20000)} mr="auto" ml="auto" alignItems="center"  mt="40px" w="fit-content" className={`card ${data.types[0].type.name}`}> 
+              <Flex key={getRandomInt(1, 20000)} mr="auto" ml="auto" alignItems="center"  mt="40px" w="fit-content" className={`card default`}> 
                 {
 
                   pokemon.map(poke => (<>
@@ -242,7 +242,7 @@ function Pokemon() {
                         <ArrowRightIcon></ArrowRightIcon>
                       </Stack>) : null}
 
-                    <Card key={poke.id} pokemon={poke} icon1={icons[iconsString.indexOf(poke.types[0].type.name)]} icon2={poke.types[1] ? icons[iconsString.indexOf(poke.types[1].type.name)] : null} ></Card>
+                    <Card key={poke.id} styleClass={data.types[0].type.name} pokemon={poke} icon1={icons[iconsString.indexOf(poke.types[0].type.name)]} icon2={poke.types[1] ? icons[iconsString.indexOf(poke.types[1].type.name)] : null} ></Card>
                   </>
 
                   ))
