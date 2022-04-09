@@ -1,4 +1,4 @@
-import { SimpleGrid, Box, Stack, Heading, Flex, Spacer, Center, Image, Button, Text } from '@chakra-ui/react'
+import { SimpleGrid, Box, Stack, Heading, Flex, Spacer, Center, Image, Button, Text, useMediaQuery } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import Search from '../../components/Search/Search'
 import '../../shared/pokemonTypes.css'

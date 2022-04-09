@@ -1,4 +1,4 @@
-import { Box, Flex, Grid, Heading, Image, Progress, Stack, Text } from '@chakra-ui/react';
+import { Box, Flex, Grid, Heading, Image, Progress, Stack, Text, useMediaQuery } from '@chakra-ui/react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
@@ -110,6 +110,8 @@ function Pokemon() {
 
   }, [species])
 
+  const [isSmallerThan1080] = useMediaQuery("(max-width:1080px)")
+
   if (Number.isNaN(+id) || Number(id) < 1 || Number(id) > 898) {
     return <NotFound />;
   }
@@ -142,10 +144,12 @@ function Pokemon() {
     return descs[getRandomInt(0, j)];
   }
 
+  
+
   return (
     <div>
       {data && species ? (<>
-        <Flex width="100%" justifyContent="center" alignItems="center">
+        <Flex direction={isSmallerThan1080 ? "column" : "row"} width="100%" justifyContent="center" alignItems={isSmallerThan1080 ? "baseline" : "center"}>
           <Flex alignItems="center" justifyContent="center" direction="column" m="20px" mr="auto" className={`card ${data.types[0].type.name}`}>
             <Flex width="100%" justifyContent="center" direction="column" ml="30px" pt="20px">
               <Flex alignItems="center">
@@ -232,7 +236,7 @@ function Pokemon() {
           <Heading>Evolutions</Heading>
           {
             pokemons.map(pokemon => (
-              <Flex key={getRandomInt(1, 20000)} mr="auto" ml="auto" alignItems="center"  mt="40px" w="fit-content" className={`card default`}> 
+              <Flex direction={isSmallerThan1080 ? "column" : "row"} key={getRandomInt(1, 20000)} mr="auto" ml="auto" alignItems="center"  mt="40px" w="fit-content" className={`card default`}> 
                 {
 
                   pokemon.map(poke => (<>
