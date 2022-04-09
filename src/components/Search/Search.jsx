@@ -52,7 +52,7 @@ function Search({ setValue, searchFilter, sortType, setSortType, filters, setFil
 
   const [hasReachedMax, setHasReachedMax] = useState(false);
 
-  const iconsString = ["Bug", "Electric", "Fairy", "Fire", "Flying", "Grass", "Ground", "Normal", "Poison", "Water"]
+  const iconsString = ["Bug", "Electric", "Fairy", "Fire", "Flying", "Grass", "Ground", "Normal", "Poison", "Water", "Steel", "Psychic", "Fighting", "Rock", "Ice", "Ghost", "Dragon", "Dark"]
 
   return (
     <div>
@@ -73,13 +73,14 @@ function Search({ setValue, searchFilter, sortType, setSortType, filters, setFil
         
         <Menu closeOnSelect={false}>
           <MenuButton ml={4} bg="white" as={Button}>Filters</MenuButton>
-          <MenuList ml="-40%" w="fit-content">
+          <MenuList ml="-40%" w="800px" >
             <MenuGroup title = "Types">
-            <HStack>
+            <HStack display="flex" wrap="wrap"   >
 
               {iconsString.map((type) => (
-                <MenuItem isDisabled={hasReachedMax ? value.includes(type) ? false : true : false} key={type} pl="0px" pr="0px" w="fit-content">
+                <MenuItem ml={type=="Bug" ? "8px" : "100px" } isDisabled={hasReachedMax ? value.includes(type) ? false : true : false} key={type} pl="0px" pr="0px" w="fit-content">
                 <CustomCheckbox  {...getCheckboxProps({ value: type })} />
+                <br></br>
                 </MenuItem>
               ))}
             </HStack>
