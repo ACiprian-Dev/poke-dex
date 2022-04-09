@@ -1,4 +1,4 @@
-import { SimpleGrid, Box, Stack, Heading, Flex, Spacer, Center, Image, Button } from '@chakra-ui/react'
+import { SimpleGrid, Box, Stack, Heading, Flex, Spacer, Center, Image, Button, Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import Search from '../../components/Search/Search'
 import '../../shared/pokemonTypes.css'
@@ -162,6 +162,7 @@ function Home() {
   return (
     <>
       <Search setFilters={setFilters} filters={filters} setValue={setSearchFilter} searchFilter={searchFilter} sortType={sortType} setSortType={setSortType} ></Search>
+      <Text fontSize="lg" mt="36px">Pokemons found matching your criteria: {auxPokemons.length} out of {pokemons.length} pokemons loaded so far</Text>
       <Flex wrap="wrap" mt={5}>
         {
           auxPokemons.map(pokemon => (
