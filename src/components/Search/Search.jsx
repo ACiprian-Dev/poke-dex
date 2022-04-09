@@ -78,7 +78,7 @@ function Search({ setValue, searchFilter, sortType, setSortType, filters, setFil
             <HStack display="flex" wrap="wrap"   >
 
               {iconsString.map((type) => (
-                <MenuItem ml={type=="Bug" ? "8px" : "100px" } isDisabled={hasReachedMax ? value.includes(type) ? false : true : false} key={type} pl="0px" pr="0px" w="fit-content">
+                <MenuItem w="100px" ml={type=="Bug" ? "8px" : "100px" } isDisabled={hasReachedMax ? value.includes(type) ? false : true : false} key={type} pl="0px" pr="0px" >
                 <CustomCheckbox  {...getCheckboxProps({ value: type })} />
                 <br></br>
                 </MenuItem>
