@@ -6,6 +6,6 @@ The main thing that this app does is fetch data from pokeapi.co and using that d
 
 ## Technologies Used
 
--React.js
--Chakra UI
--JavaScript
+- React.js
+- Chakra UI
+- JavaScript
