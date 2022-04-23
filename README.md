@@ -1,4 +1,4 @@
-# Hello There! Welcome to a React Web Application made by me for the FII Practic final project.
+# Hello There! Welcome to a React Web Application made by me for the FII Practic Course's final project.
 
 ## About The App
 
@@ -9,3 +9,19 @@ The main thing that this app does is fetch data from pokeapi.co and using that d
 - React.js
 - Chakra UI
 - JavaScript
+
+## Features To Do
+
+[x] Search Bar
+[x] Filter Button
+[x] Sort Button
+[x] Type Details Page
+[x] Pokemon Details Page
+[ ] Access Type Details Page from the home page
+[ ] Add Pokemon Quiz
+[ ] Add Lazy Skeleton Loading
+
+## Issues To Fix
+
+[ ] Fix Link Issues with the Type Tag.
+[ ] Find A specific pokemon using the search bar even if that pokemon is not in the loaded pokemons list.
